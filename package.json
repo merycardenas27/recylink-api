@@ -19,5 +19,12 @@
   "bugs": {
     "url": "https://github.com/merycardenas27/recylink-prueba-final/issues"
   },
-  "homepage": "https://github.com/merycardenas27/recylink-prueba-final#readme"
+  "homepage": "https://github.com/merycardenas27/recylink-prueba-final#readme",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.18.2",
+    "express-graphql": "^0.12.0",
+    "graphql": "^15.8.0",
+    "lodash": "^4.17.21"
+  }
 }
