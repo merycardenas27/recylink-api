@@ -1,7 +1,7 @@
 const { GraphQLList, GraphQLID } = require('graphql');
 
-const { BrandType } = require('./types');
-const { BrandModel } = require('../models');
+const { BrandType, PatternType } = require('./types');
+const { BrandModel, PatternModel } = require('../models');
 
 const getBrand = {
   type: BrandType,
@@ -16,4 +16,10 @@ const getBrands = {
   resolve: () => BrandModel.find(),
 };
 
-module.exports = { getBrand, getBrands };
+const getPatterns = {
+  type: new GraphQLList(PatternType),
+  description: 'Get list of patterns',
+  resolve: () => PatternModel.find(),
+};
+
+module.exports = { getBrand, getBrands, getPatterns };

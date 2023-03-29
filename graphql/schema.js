@@ -1,6 +1,6 @@
 const { GraphQLObjectType, GraphQLSchema } = require('graphql');
 
-const { getBrand, getBrands } = require('./queries');
+const { getBrand, getBrands, getPatterns } = require('./queries');
 const {
   createBrand,
   createPattern,
@@ -14,6 +14,7 @@ const QueryType = new GraphQLObjectType({
   fields: {
     getBrand,
     getBrands,
+    getPatterns,
   },
 });
 
