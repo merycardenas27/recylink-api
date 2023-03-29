@@ -4,7 +4,7 @@ const { BrandType } = require('./types');
 const { BrandModel } = require('../models');
 
 const createBrand = {
-  type: GraphQLString,
+  type: BrandType,
   description: 'Create a new brand',
   args: {
     name: { type: GraphQLString },
@@ -12,9 +12,8 @@ const createBrand = {
   resolve: async (_, args) => {
     const { name } = args;
     const newBrand = await BrandModel.create({ name });
-    // eslint-disable-next-line no-console
-    console.log(newBrand);
-    return 'New brand created';
+
+    return newBrand;
   },
 };
 
@@ -37,7 +36,22 @@ const updateBrand = {
   },
 };
 
+const deleteBrand = {
+  type: GraphQLString,
+  description: 'Delete a brand',
+  args: { id: { type: GraphQLID } },
+  resolve: async (_, args) => {
+    const { id } = args;
+    const deletedBrand = await BrandModel.findOneAndDelete({ _id: id });
+
+    if (!deletedBrand) throw new Error('Brand not found');
+
+    return 'Brand deleted';
+  },
+};
+
 module.exports = {
   createBrand,
   updateBrand,
+  deleteBrand,
 };
