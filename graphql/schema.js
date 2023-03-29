@@ -12,6 +12,7 @@ const {
   updateBrand,
   updatePattern,
   deleteBrand,
+  deletePattern,
 } = require('./mutations');
 
 const QueryType = new GraphQLObjectType({
@@ -34,6 +35,7 @@ const MutationType = new GraphQLObjectType({
     updateBrand,
     updatePattern,
     deleteBrand,
+    deletePattern,
   },
 });
 

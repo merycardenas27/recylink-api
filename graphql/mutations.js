@@ -92,10 +92,25 @@ const deleteBrand = {
   },
 };
 
+const deletePattern = {
+  type: GraphQLString,
+  description: 'Delete a pattern',
+  args: { id: { type: GraphQLID } },
+  resolve: async (_, args) => {
+    const { id } = args;
+    const deletedPattern = await PatternModel.findOneAndDelete({ _id: id });
+
+    if (!deletedPattern) throw new Error('Pattern not found');
+
+    return 'Pattern deleted';
+  },
+};
+
 module.exports = {
   createBrand,
   createPattern,
   updateBrand,
   updatePattern,
   deleteBrand,
+  deletePattern,
 };
