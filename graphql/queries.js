@@ -16,10 +16,22 @@ const getBrands = {
   resolve: () => BrandModel.find(),
 };
 
+const getPattern = {
+  type: PatternType,
+  description: 'Get pattern by id',
+  args: { id: { type: GraphQLID } },
+  resolve: (_, args) => PatternModel.findById(args.id),
+};
+
 const getPatterns = {
   type: new GraphQLList(PatternType),
   description: 'Get list of patterns',
   resolve: () => PatternModel.find(),
 };
 
-module.exports = { getBrand, getBrands, getPatterns };
+module.exports = {
+  getBrand,
+  getBrands,
+  getPattern,
+  getPatterns,
+};
