@@ -52,6 +52,32 @@ const updateBrand = {
   },
 };
 
+const updatePattern = {
+  type: PatternType,
+  description: 'Update a pattern',
+  args: {
+    id: { type: GraphQLID },
+    name: { type: GraphQLString },
+    body: { type: GraphQLString },
+    brandId: { type: GraphQLID },
+  },
+  resolve: async (_, args) => {
+    const {
+      id,
+      name,
+      body,
+      brandId,
+    } = args;
+    const updatedPattern = await PatternModel.findOneAndUpdate(
+      { _id: id },
+      { name, body, brandId },
+      { new: true },
+    );
+
+    return updatedPattern;
+  },
+};
+
 const deleteBrand = {
   type: GraphQLString,
   description: 'Delete a brand',
@@ -70,5 +96,6 @@ module.exports = {
   createBrand,
   createPattern,
   updateBrand,
+  updatePattern,
   deleteBrand,
 };
