@@ -13,6 +13,18 @@ const BrandType = new GraphQLObjectType({
   },
 });
 
+const PatternType = new GraphQLObjectType({
+  name: 'PatternType',
+  description: 'The pattern type',
+  fields: {
+    id: { type: GraphQLID },
+    name: { type: GraphQLString },
+    body: { type: GraphQLString },
+    brandId: { type: GraphQLID },
+  },
+});
+
 module.exports = {
   BrandType,
+  PatternType,
 };
