@@ -1,7 +1,7 @@
 const { GraphQLID, GraphQLString } = require('graphql');
 
-const { BrandType } = require('./types');
-const { BrandModel } = require('../models');
+const { BrandType, PatternType } = require('./types');
+const { BrandModel, PatternModel } = require('../models');
 
 const createBrand = {
   type: BrandType,
@@ -14,6 +14,22 @@ const createBrand = {
     const newBrand = await BrandModel.create({ name });
 
     return newBrand;
+  },
+};
+
+const createPattern = {
+  type: PatternType,
+  description: 'Create a new pattern',
+  args: {
+    name: { type: GraphQLString },
+    body: { type: GraphQLString },
+    brandId: { type: GraphQLID },
+  },
+  resolve: async (_, args) => {
+    const { name, body, brandId } = args;
+    const newPattern = await PatternModel.create({ name, body, brandId });
+
+    return newPattern;
   },
 };
 
@@ -52,6 +68,7 @@ const deleteBrand = {
 
 module.exports = {
   createBrand,
+  createPattern,
   updateBrand,
   deleteBrand,
 };
